@@ -23,11 +23,22 @@ public class AttackState : State
 
     public override void Update()
     {
-        
+        Vector3 direction = player.position - npc.transform.position;
+        float angle = Vector3.Angle(direction, npc.transform.forward);
+        direction.y = 0;
+
+        npc.transform.rotation = Quaternion.Slerp(npc.transform.rotation, Quaternion.LookRotation(direction), Time.deltaTime * rotationSpeed);
+        if (!CanAttackPlayer())
+        {
+            nextState = new IdleState(npc, agent, anim, player);
+            stage = EVENT.EXIT;
+        }
     }
 
     public override void Exit()
     {
+        shoot.Stop();
+        anim.ResetTrigger("isShooting");
         base.Exit();
     }
 }
