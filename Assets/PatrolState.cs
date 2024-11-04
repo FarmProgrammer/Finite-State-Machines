@@ -31,8 +31,6 @@ public class PatrolState : State
 
             agent.SetDestination(GameEnvironment.Singleton.Checkpoints[currentIndex].transform.position);
         }
-
-        base.Update();
     }
 
     public override void Exit()

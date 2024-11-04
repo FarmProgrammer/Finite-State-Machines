@@ -20,10 +20,9 @@ public class IdleState : State
     {
         if (Random.Range(0, 100) < 10)
         {
-            nextState = new PatroState(npc, agent, anim, player);
+            nextState = new PatrolState(npc, agent, anim, player);
             stage = EVENT.EXIT;
         }
-        base.Update();
     }
 
     public override void Exit()
