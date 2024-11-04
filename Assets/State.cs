@@ -7,7 +7,7 @@ public class State
 {
     public enum STATE
     {
-        IDLE, PATROL, PURSUE, ATTACK, SLEEP
+        IDLE, PATROL, PURSUE, ATTACK, SLEEP, RUN
     }
 
     public enum EVENT
@@ -83,6 +83,18 @@ public class State
         float angle = Vector3.Angle(direction, npc.transform.forward);
 
         if (direction.magnitude < shootDist && angle < visAngle)
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public bool PlayerSnuckUp()
+    {
+        Vector3 direction = player.position - npc.transform.position;
+        float angle = Vector3.Angle(direction, -npc.transform.forward);
+
+        if (direction.magnitude < 2 && angle < visAngle)
         {
             return true;
         }

@@ -48,6 +48,12 @@ public class PatrolState : State
             nextState = new PursueState(npc, agent, anim, player);
             stage = EVENT.EXIT;
         }
+
+        if (PlayerSnuckUp())
+        {
+            nextState = new RunState(npc, agent, anim, player);
+            stage = EVENT.EXIT;
+        }
     }
 
     public override void Exit()
